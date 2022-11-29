@@ -1,29 +1,46 @@
-# Arabic number conversion tool
+# Getting Started with Create React App
 
-Create a web-based solution that converts numeric input into the English phrase of that number. 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-For example:
-<pre>
-7       === seven
-42      === forty-two
-1999    === one thousand nine hundred and ninety-nine
-2001    === two thousand and one
-17999   === seventeen thousand nine hundred and ninety-nine
-100001  === one hundred thousand and one
-342251  === three hundred and forty-two thousand two hundred and fifty-one
-1300420 === one million three hundred thousand four hundred and twenty
-</pre>
+## Available Scripts
 
-Note: Numbers greater than 100 may include the word "and" between the hundreds figure and the rest of the number. Figure out the pattern and implement the solution accordingly.
+In the project directory, you can run:
 
-Treat this task like a project to create a real-life application, focus on other aspects too, not just the code:
-- Fork this project.
-- Use the best stack matching the simplicity of the task.
-- Don't use external libraries for the conversion.
-- Make the solution pleasant to look at and user friendly in as many aspects as you can.
-- Commit the important milestones and not just the final result.
-- Don't forget to write tests. We expect the tests to check also the examples above.
-- Try to support numbers as high as you can.
-- (Optional) Try to support British English counting where numbers between 1000 and 2000 are said out using "hundreds". E.g. 1999 === nineteen hundred and ninety-nine
+### `npm start`
 
-Thank you for your time and happy coding! 🧑‍💻
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
