@@ -1,10 +1,21 @@
 import { NumberData } from "../data/Numbers";
 
-export const parseNumbers = (
-  number: number,
-  localValue: string,
-  numbers: NumberData
-) => {
+// TODO: pass the numbers from outside
+
+
+const getNumStringByRules = (localValue: string, num: string, numbers: NumberData) => {
+  const versions = {
+    "onlyzeros" : ``
+  }
+  const isZero = parseInt(num.substring(1)) === 0 ? "onlyzeros" : "mixed";
+  const isHundred = num.length === 3 ? "isHundred" : "lessThanHundred";
+}
+
+export const parseNumbers = (num: string, localValue: string, numbers: NumberData) => {
+  if (!parseInt(num)) {
+    return;
+  }
+  const number = parseInt(num);
   if (number < 20) {
     return numbers["first"][number];
   }
@@ -17,7 +28,13 @@ export const parseNumbers = (
       return numbers["first"][num];
     }
     const tenNum = convertNthNumber(0, num.toString());
+    if (num % 100 === 0) {
+    }
     const ten = numbers["ten"][tenNum];
+
+    if (num % 10 === 0) {
+    }
+
     const one = numbers["first"][num - tenNum * 10];
 
     return ten + one;

@@ -5,7 +5,7 @@ import "./App.css";
 import { parseNumbers } from "./utils/utils";
 
 function App() {
-  const [inputValue, setInputValue] = useState<number>(0);
+  const [inputValue, setInputValue] = useState<string>("");
   const [numberAsString, setNumberAsString] = useState<string>("");
 
   const handleInputChange = () => {
@@ -13,11 +13,10 @@ function App() {
     if (typeof value === "string" && parseInt(value)) {
       const newNumber = parseInt(value);
       getNumberAsString(newNumber);
-      setInputValue(newNumber);
-      console.log(processNumber(newNumber));
+      setInputValue(newNumber.toString());
+      console.log(processNumber(value));
     } else {
-      setInputValue(0);
-      getNumberAsString(0);
+      setInputValue("");
     }
   };
 
@@ -29,8 +28,8 @@ function App() {
     }
   };
 
-  const processNumber = (num: number) => {
-    const numArr = num.toString().split("");
+  const processNumber = (num: string) => {
+    const numArr = num.split("");
 
     if (numArr.length < 4) {
       return parseNumbers(num, "hundred", numbers);
@@ -43,12 +42,13 @@ function App() {
           acc.push([curr]);
           return acc;
         } else {
+          console.log(curr);
           const lastArrIdx = acc.length - 1;
           acc[lastArrIdx].push(curr);
           return acc;
         }
       }, [])
-      .map((numGroup) => parseInt(numGroup.reverse().join("")));
+      .map((numGroup) => numGroup.reverse().join(""));
 
     console.log(groupedNums);
 
