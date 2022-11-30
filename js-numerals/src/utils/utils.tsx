@@ -3,16 +3,19 @@ import { NumberData } from "../data/Numbers";
 // TODO: pass the numbers from outside
 
 
-export const buildNumberString = (
+export const buildThreeDigitNumStr = (
   localValue: string,
-  numStrings: { hundreds: string; tens: string; ones: string }
+  numStrings: { hundreds: string; tens: string }
 ) => {
-  const hasNotTensOrOnes = numStrings.tens === "" && numStrings.ones === "";
+  const hasNotTensOrOnes = numStrings.tens === "";
   if (localValue === "hundred" && hasNotTensOrOnes) {
     return `${numStrings.hundreds} hundred`;
   } else if (localValue === "hundred") {
-    return `${numStrings.hundreds} hundred and ${numStrings.tens} ${numStrings.ones}`;
+    return `${numStrings.hundreds} hundred and ${numStrings.tens}`;
+  } else if (hasNotTensOrOnes) {
+    return `${numStrings.hundreds} hundred ${localValue}`;
   }
+  return `${numStrings.hundreds} hundred and ${numStrings.tens} ${localValue}`;
 };
 
 export const parseNumbers = (
@@ -58,9 +61,7 @@ export const parseNumbers = (
   const ten = getTens(number - Math.floor(number / 100) * 100);
 
   //TODO: parse the correct order (no tens and ones, in case of one proper values)
-  return localValue === "hundred"
-    ? `${hundreds} ${localValue} and ${ten}`
-    : `${hundreds} hundred and ${ten} ${localValue}`;
+  return buildThreeDigitNumStr(localValue, { hundreds: hundreds, tens: ten });
 };
 
 const convertNthNumber = (idx: number, numberAsString: string) =>

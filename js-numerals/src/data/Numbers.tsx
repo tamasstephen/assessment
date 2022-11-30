@@ -33,6 +33,6 @@ export const numbers: NumberData = {
     6: "sixty",
     7: "seventy",
     8: "eigthy",
-    9: "ninty",
+    9: "ninety",
   },
 };
