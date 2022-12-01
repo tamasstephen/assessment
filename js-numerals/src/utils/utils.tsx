@@ -29,7 +29,13 @@ import { NumberData } from "../data/Numbers";
     const elements = groupedNums.map((nums, idx) =>
       parseNumbers(nums, LOCALS[idx], numbers)
     );
-    return elements.reverse().join(" ");
+
+    const finalElements =
+      elements.length > 1 && !elements[0].includes("and")
+        ? [...elements].map((el, idx) => (idx === 0 ? "and " + el : el))
+        : elements;
+
+    return finalElements.reverse().join(" ");
   };
 
 export const buildThreeDigitNumStr = (
