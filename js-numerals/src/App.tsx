@@ -45,6 +45,9 @@ function App() {
           Use our converter and get your favourite{" "}
           <span className="emph">NUMBER as STRING</span>!!!
         </p>
+        <p className={`error-msg ${inputState}`}>
+          Please provide a valid number!
+        </p>
         <input
           className={`converter-card__input ${inputState}`}
           type="text"

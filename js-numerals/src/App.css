@@ -51,6 +51,18 @@ input:focus {
   outline: none;
 }
 
+p.error-msg {
+  display: none;
+}
+
+p.error-msg.input-error {
+  display:  block;
+  color:  #fd5c63;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
 .converter-card__result-wrapper {
   padding: 2rem 1rem;
   border-radius: 10px;
