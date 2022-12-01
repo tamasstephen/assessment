@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { numbers } from "./data/Numbers";
 import logo from "./logo.svg";
 import "./App.css";
-import { parseNumbers } from "./utils/utils";
+import { processNumber } from "./utils/utils";
 
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -12,54 +12,14 @@ function App() {
     const value = inputEl.current?.value;
     if (typeof value === "string" && parseInt(value)) {
       const newNumber = parseInt(value);
-      getNumberAsString(newNumber);
       setInputValue(newNumber.toString());
-      console.log(processNumber(value));
+      setNumberAsString(processNumber(value, numbers));
     } else {
       setInputValue("");
     }
   };
 
-  const getNumberAsString = (number: number) => {
-    if (number < 20) {
-      setNumberAsString(numbers["first"][number]);
-    }
-    if (99 < number && number < 1000) {
-    }
-  };
-
-  const processNumber = (num: string) => {
-    const numArr = num.split("");
-
-    if (numArr.length < 4) {
-      return parseNumbers(num, "hundred", numbers);
-    }
-
-    const newNumArr = [...numArr].reverse();
-    const groupedNums = newNumArr
-      .reduce((acc: string[][], curr: string, idx: number) => {
-        if (idx === 0 || idx % 3 === 0) {
-          acc.push([curr]);
-          return acc;
-        } else {
-          console.log(curr);
-          const lastArrIdx = acc.length - 1;
-          acc[lastArrIdx].push(curr);
-          return acc;
-        }
-      }, [])
-      .map((numGroup) => numGroup.reverse().join(""));
-
-    console.log(groupedNums);
-
-    const LOCALS = ["hundred", "thousand", "million", "billion"];
-
-    const elements = groupedNums.map((nums, idx) =>
-      parseNumbers(nums, LOCALS[idx], numbers)
-    );
-
-    console.log(elements);
-  };
+  //TODO: Import from outside
 
   const inputEl = useRef<HTMLInputElement>(null);
 

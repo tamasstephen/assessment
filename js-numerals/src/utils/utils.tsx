@@ -2,6 +2,35 @@ import { NumberData } from "../data/Numbers";
 
 // TODO: pass the numbers from outside
 
+  export const processNumber = (num: string, numbers: NumberData) => {
+    const numArr = num.split("");
+
+    if (numArr.length < 4) {
+      return parseNumbers(num, "hundred", numbers);
+    }
+
+    const newNumArr = [...numArr].reverse();
+    const groupedNums = newNumArr
+      .reduce((acc: string[][], curr: string, idx: number) => {
+        if (idx === 0 || idx % 3 === 0) {
+          acc.push([curr]);
+          return acc;
+        } else {
+          const lastArrIdx = acc.length - 1;
+          acc[lastArrIdx].push(curr);
+          return acc;
+        }
+      }, [])
+      .map((numGroup) => numGroup.reverse().join(""));
+
+    const LOCALS = ["hundred", "thousand", "million", "billion"];
+
+    //TODO: We need to check if the first number in the array is not empty if not than if it contains an and
+    const elements = groupedNums.map((nums, idx) =>
+      parseNumbers(nums, LOCALS[idx], numbers)
+    );
+    return elements.reverse().join(" ");
+  };
 
 export const buildThreeDigitNumStr = (
   localValue: string,
