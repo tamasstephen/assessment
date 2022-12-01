@@ -16,10 +16,9 @@ function App() {
       setNumberAsString(processNumber(value, numbers));
     } else {
       setInputValue("");
+      setNumberAsString("");
     }
   };
-
-  //TODO: Import from outside
 
   const inputEl = useRef<HTMLInputElement>(null);
 
