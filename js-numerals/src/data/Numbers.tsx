@@ -28,7 +28,7 @@ export const numbers: NumberData = {
   ten: {
     2: "twenty",
     3: "thirty",
-    4: "fourty",
+    4: "forty",
     5: "fifty",
     6: "sixty",
     7: "seventy",
