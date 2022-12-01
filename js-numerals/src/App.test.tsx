@@ -1,18 +1,9 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
 import {
   parseNumbers,
   buildThreeDigitNumStr,
   processNumber,
 } from "./utils/utils";
 import { numbers } from "./data/Numbers";
-
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
 
 test("testing number building form strings", () => {
   expect(
