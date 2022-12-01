@@ -5,6 +5,10 @@ import { NumberData } from "../data/Numbers";
   export const processNumber = (num: string, numbers: NumberData) => {
     const numArr = num.split("");
 
+    if (num === "0") {
+      return "zero";
+    }
+
     if (numArr.length < 4) {
       return parseNumbers(num, "hundred", numbers);
     }
@@ -25,6 +29,7 @@ import { NumberData } from "../data/Numbers";
 
     const LOCALS = ["hundred", "thousand", "million", "billion"];
 
+    // What if number is longer than locals!!!
     const elements = groupedNums.map((nums, idx) =>
       parseNumbers(nums, LOCALS[idx], numbers)
     );
@@ -67,10 +72,12 @@ import { NumberData } from "../data/Numbers";
         : `${numbers["first"][number]} ${localValue}`;
     }
 
+    // Extract ------
     const getTens = (num: number) => {
       if (num === 0) {
         return "";
       }
+
       if (num < 20) {
         return numbers["first"][num];
       }
@@ -83,6 +90,8 @@ import { NumberData } from "../data/Numbers";
 
       return one !== "" ? `${ten}-${one}` : ten;
     };
+
+    // ----------------------------------------------------------------
 
     if (number < 100) {
       const tens = getTens(number);

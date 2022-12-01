@@ -10,14 +10,24 @@ function App() {
     "Please provide a number"
   );
 
+  const MAX_NUM_LENGTH = 12 as const;
+
   const handleInputChange = () => {
     const value = inputEl.current?.value;
     if (
       typeof value === "string" &&
-      parseInt(value) &&
+      (parseInt(value) || value === "0") &&
       !/[a-zA-Z]/.test(value)
     ) {
       const newNumber = parseInt(value);
+
+      if (value.length > MAX_NUM_LENGTH) {
+        setNumberAsString(
+          "The provided number is too big, please provide a smaller number"
+        );
+        return;
+      }
+
       setInputValue(newNumber.toString());
       setNumberAsString(processNumber(value, numbers));
       inputState === "input-error" && setInputState("");
