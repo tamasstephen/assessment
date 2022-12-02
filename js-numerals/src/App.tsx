@@ -36,14 +36,12 @@ function App() {
         : "The provided number is too big, please provide a smaller number";
       setNumberAsString(displayText);
       inputState === "input-error" && setInputState("");
-    } else {
-      if (value === undefined || /[a-zA-Z]/.test(value)) {
+    } else if(value === undefined || /[a-zA-Z]/.test(value)) {
         setNumberAsString("Only numbers are allowed");
         setInputState("input-error");
-      } else {
-        setNumberAsString("Please provide a number");
-        setInputValue("");
-      }
+    } else {
+      setNumberAsString("Please provide a number");
+      setInputValue("");
     }
   };
 
