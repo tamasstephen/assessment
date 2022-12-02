@@ -1,6 +1,6 @@
 import {
-  parseNumbers,
   buildThreeDigitNumStr,
+  parseNumbers,
   processNumber,
 } from "./utils/utils";
 import { numbers } from "./data/Numbers";

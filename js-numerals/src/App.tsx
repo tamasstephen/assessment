@@ -1,35 +1,38 @@
 import React, { useState, useRef } from "react";
 import { numbers } from "./data/Numbers";
 import "./App.css";
-import { processNumber } from "./utils/utils";
+import { convertNumbersToString } from "./utils/utils";
 
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
   const [inputState, setInputState] = useState<string>("");
+  const [isBritish, setIsBritish] = useState<boolean>(false);
   const [numberAsString, setNumberAsString] = useState<string>(
     "Please provide a number"
   );
 
-  const MAX_NUM_LENGTH = 12 as const;
-
-  const handleInputChange = () => {
-    const value = inputEl.current?.value;
-    if (
+  function isValidNumber(value: string | undefined) {
+    return (
       typeof value === "string" &&
       (parseInt(value) || value === "0") &&
       !/[a-zA-Z]/.test(value)
-    ) {
-      const newNumber = parseInt(value);
+    );
+  }
 
-      if (value.length > MAX_NUM_LENGTH) {
-        setNumberAsString(
-          "The provided number is too big, please provide a smaller number"
-        );
-        return;
+  const MAX_NUM_LENGTH = 12;
+
+  const handleInputChange = () => {
+    const value = inputEl.current?.value;
+    if (value !== undefined && isValidNumber(value)) {
+      const isNotTooBig = value.length <= MAX_NUM_LENGTH;
+
+      if (isNotTooBig) {
+        setInputValue(value);
       }
-
-      setInputValue(newNumber.toString());
-      setNumberAsString(processNumber(value, numbers));
+      const displayText = isNotTooBig
+        ? convertNumbersToString(value, numbers, isBritish)
+        : "The provided number is too big, please provide a smaller number";
+      setNumberAsString(displayText);
       inputState === "input-error" && setInputState("");
     } else {
       if (value === undefined || /[a-zA-Z]/.test(value)) {
@@ -65,6 +68,7 @@ function App() {
           onChange={handleInputChange}
           ref={inputEl}
         />
+        <button onClick={() => setIsBritish(!isBritish)}>isBritish</button>
       </div>
     </div>
   );
