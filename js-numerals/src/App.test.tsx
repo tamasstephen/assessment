@@ -87,6 +87,10 @@ test("convert numbers to string if british", () => {
   );
   expect(convertNumbersToString("2000", numbers, true)).toEqual("two thousand");
   expect(convertNumbersToString("1000", numbers, true)).toEqual("one thousand");
+  expect(convertNumbersToString("000201", numbers, false)).toEqual(
+    "two hundred and one"
+  );
+  expect(convertNumbersToString("0001", numbers, false)).toEqual("one");
 });
 
 test("convert numbers to string if not british", () => {
@@ -113,4 +117,8 @@ test("convert numbers to string if not british", () => {
   expect(convertNumbersToString("0201", numbers, false)).toEqual(
     "two hundred and one"
   );
+  expect(convertNumbersToString("000201", numbers, false)).toEqual(
+    "two hundred and one"
+  );
+  expect(convertNumbersToString("000001", numbers, false)).toEqual("one");
 });
