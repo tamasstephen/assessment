@@ -2,6 +2,7 @@ import {
   buildThreeDigitNumStr,
   parseNumbers,
   processNumber,
+  convertNumbersToString,
 } from "./utils/utils";
 import { numbers } from "./data/Numbers";
 
@@ -58,5 +59,58 @@ test("convert numbers to proper string representation", () => {
   );
   expect(processNumber("1300420", numbers)).toEqual(
     "one million three hundred thousand four hundred and twenty"
+  );
+});
+
+test("convert numbers to string if british", () => {
+  expect(convertNumbersToString("7", numbers, true)).toEqual("seven");
+  expect(convertNumbersToString("1999", numbers, true)).toEqual(
+    "nineteen hundred and ninety-nine"
+  );
+  expect(convertNumbersToString("1800", numbers, true)).toEqual(
+    "eighteen hundred"
+  );
+  expect(convertNumbersToString("1701", numbers, true)).toEqual(
+    "seventeen hundred and one"
+  );
+  expect(convertNumbersToString("1211", numbers, true)).toEqual(
+    "twelve hundred and eleven"
+  );
+  expect(convertNumbersToString("0211", numbers, true)).toEqual(
+    "two hundred and eleven"
+  );
+  expect(convertNumbersToString("0210", numbers, true)).toEqual(
+    "two hundred and ten"
+  );
+  expect(convertNumbersToString("0201", numbers, true)).toEqual(
+    "two hundred and one"
+  );
+  expect(convertNumbersToString("2000", numbers, true)).toEqual("two thousand");
+  expect(convertNumbersToString("1000", numbers, true)).toEqual("one thousand");
+});
+
+test("convert numbers to string if not british", () => {
+  expect(convertNumbersToString("7", numbers, false)).toEqual("seven");
+
+  expect(convertNumbersToString("1999", numbers, false)).toEqual(
+    "one thousand nine hundred and ninety-nine"
+  );
+  expect(convertNumbersToString("1800", numbers, false)).toEqual(
+    "one thousand and eight hundred"
+  );
+  expect(convertNumbersToString("1701", numbers, false)).toEqual(
+    "one thousand seven hundred and one"
+  );
+  expect(convertNumbersToString("1211", numbers, false)).toEqual(
+    "one thousand two hundred and eleven"
+  );
+  expect(convertNumbersToString("0211", numbers, false)).toEqual(
+    "two hundred and eleven"
+  );
+  expect(convertNumbersToString("0210", numbers, false)).toEqual(
+    "two hundred and ten"
+  );
+  expect(convertNumbersToString("0201", numbers, false)).toEqual(
+    "two hundred and one"
   );
 });

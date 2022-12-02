@@ -9,11 +9,13 @@ export function convertNumbersToString(
   if (isBritish && 1000 < number && number < 2000) {
     const firstTwoDigit = getTens(parseInt(num.substring(0, 2)), numbers);
     const lastTwoDigit = getTens(parseInt(num.substring(2)), numbers);
-    return lastTwoDigit !== ""
-      ? `${firstTwoDigit} hundred and ${lastTwoDigit}`
-      : `${firstTwoDigit} hundred`;
+    const result =
+      lastTwoDigit !== ""
+        ? `${firstTwoDigit} hundred and ${lastTwoDigit}`
+        : `${firstTwoDigit} hundred`;
+    return result.trim();
   } else {
-    return processNumber(num, numbers);
+    return processNumber(num, numbers).trim();
   }
 }
 
@@ -44,7 +46,6 @@ export function processNumber(num: string, numbers: NumberData) {
 
   const LOCALS = ["hundred", "thousand", "million", "billion"];
 
-  // What if number is longer than locals!!!
   const elements = groupedNums.map((nums, idx) =>
     parseNumbers(nums, LOCALS[idx], numbers)
   );
