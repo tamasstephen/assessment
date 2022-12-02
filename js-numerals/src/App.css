@@ -89,5 +89,22 @@ p.error-msg.input-error {
   .converter-card__title {
     font-size: 3rem;
   }
+}
 
-  }
+.switch-btn {
+  font-size: 1.125rem;
+  padding: .75rem 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border-style: none;
+  background-color: white;
+  font-weight: 700;
+  color: #0042bd;
+  transition: all .3s ease-in-out;
+}
+
+.switch-btn:hover {
+  background-color: #0042bd;
+  color: white;
+  cursor: pointer;
+}

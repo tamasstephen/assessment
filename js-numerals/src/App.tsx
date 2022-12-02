@@ -3,10 +3,12 @@ import { numbers } from "./data/Numbers";
 import "./App.css";
 import { convertNumbersToString } from "./utils/utils";
 
+
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
   const [inputState, setInputState] = useState<string>("");
   const [isBritish, setIsBritish] = useState<boolean>(false);
+  const [switchText, setSwitchText] = useState<string>("Switch to british");
   const [numberAsString, setNumberAsString] = useState<string>(
     "Please provide a number"
   );
@@ -68,8 +70,20 @@ function App() {
           onChange={handleInputChange}
           ref={inputEl}
         />
-        <button onClick={() => setIsBritish(!isBritish)}>isBritish</button>
       </div>
+      <button
+        className="switch-btn"
+        onClick={() => {
+          setIsBritish(!isBritish);
+          setSwitchText(() =>
+            switchText === "Switch to british"
+              ? "Switch to regular"
+              : "Switch to british"
+          );
+        }}
+      >
+        {switchText}
+      </button>
     </div>
   );
 }
