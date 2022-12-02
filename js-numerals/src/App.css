@@ -95,12 +95,13 @@ p.error-msg.input-error {
   font-size: 1.125rem;
   padding: .75rem 1rem;
   border-radius: 5px;
-  margin-top: 1rem;
+  margin-top: 2rem;
   border-style: none;
   background-color: white;
   font-weight: 700;
   color: #0042bd;
   transition: all .3s ease-in-out;
+  box-shadow: 0 0 .5rem rgba(15, 10, 222, .15);
 }
 
 .switch-btn:hover {

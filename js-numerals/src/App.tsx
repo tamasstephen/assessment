@@ -61,7 +61,7 @@ function App() {
           <span className="emph">NUMBER as STRING</span>!!!
         </p>
         <p className={`error-msg ${inputState}`}>
-          Please provide a valid number!
+          Please provide a valid number between 0 and 999 999 999 999!
         </p>
         <input
           className={`converter-card__input ${inputState}`}
