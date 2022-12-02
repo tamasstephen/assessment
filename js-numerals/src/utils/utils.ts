@@ -20,11 +20,11 @@ export function convertNumbersToString(
 }
 
 export function processNumber(num: string, numbers: NumberData) {
-  const numArr = num.split("");
-
   if (num === "0") {
     return "zero";
   }
+
+  const numArr = num.split("");
 
   if (numArr.length < 4) {
     return parseNumbers(num, "hundred", numbers);
@@ -50,10 +50,22 @@ export function processNumber(num: string, numbers: NumberData) {
     parseNumbers(nums, LOCALS[idx], numbers)
   );
 
-  const finalElements =
-    elements.length > 1 && !elements[0].includes("and") && elements[0] !== ""
-      ? [...elements].map((el, idx) => (idx === 0 ? "and " + el : el))
-      : elements;
+  const onlyZerosAboveHundrd =
+    elements.filter((group, index) => {
+      if (index !== 0) {
+        return group !== "";
+      }
+      return false;
+    }).length < 1;
+
+  const hasToAddAnAnd =
+    elements.length > 1 &&
+    !elements[0].includes("and") &&
+    elements[0] !== "" &&
+    !onlyZerosAboveHundrd;
+  const finalElements = hasToAddAnAnd
+    ? [...elements].map((el, idx) => (idx === 0 ? "and " + el : el))
+    : elements;
 
   return finalElements.reverse().join(" ");
 }
